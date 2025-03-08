@@ -12,7 +12,12 @@ dotenv.config();
 connectDB(); 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'https://e-commerce-787k.onrender.com', // Allow frontend domain
+    methods: 'GET, POST, PUT, DELETE',
+    allowedHeaders: 'Content-Type, Authorization'
+}));
+
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/product", productRoutes);
